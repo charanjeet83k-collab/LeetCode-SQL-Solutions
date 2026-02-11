@@ -1,0 +1,9 @@
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    RETURN (
+        /* Write your T-SQL query statement below. */
+     SELECT DISTINCT SALARY FROM
+     (select SALARY,DENSE_RANK()OVER(ORDER BY SALARY DESC)AS RANKS FROM EMPLOYEE)AS X
+     WHERE RANKS = @N
+    );
+END
